@@ -5,7 +5,7 @@ Cocok buat yang punya VPS 512MB dan capek lihat panel web yang lemot.
 
 ## ✨ Kenapa OmniPanel?
 
-- **Ringan** - Cuma pakai 10MB RAM (bukan 500MB kayak panel web)
+- **Ringan** - Cuma pakai 512MB RAM
 - **Responsif** - Semua command instant, nggak ada loading
 - **Belajar Docker** - CLI bikin lebih paham daripada klik-klik
 - **SSH Native** - Akses dari mana aja pake SSH, nggak perlu buka port 80/443
