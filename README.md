@@ -359,7 +359,7 @@ Ringan, Terbatas, dan Mudah Digunakan untuk Belajar Docker! 🚀
 
 ```bash
 # Install sekarang juga!
-wget -O omnipanel-install.sh https://raw.githubusercontent.com/Konsep-baru/omnipanel/main/install-simple.sh
-chmod +x omnipanel-install.sh
-sudo ./omnipanel-install.sh install
+wget -O installer.sh https://raw.githubusercontent.com/Konsep-baru/omnipanel/main/installer.sh
+chmod +x installer.sh
+sudo ./installer.sh install
 ```
