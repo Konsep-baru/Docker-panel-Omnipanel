@@ -1,42 +1,62 @@
-📘 V1.0 - SIMPLE VERSION
+📘 README OMNIPANEL V1.0 - SIMPLE EDITION
 
-🚀 OmniPanel - Docker Management System via SSH
+🚀 OmniPanel Simple Edition - Docker Management dengan Resource Limit
 
-Panel Docker super ringan yang diakses melalui SSH. Cocok untuk Server 512MB, homelab, dan belajar Docker. Installasi otomatis, siap pakai dalam 5 menit!
+Panel Docker super ringan dengan batasan resource untuk menjaga performa. Cocok untuk belajar Docker, VPS terbatas, dan homelab. Hanya support Debian/Ubuntu!
 
 ---
 
 ✨ FITUR UTAMA
 
 Fitur Keterangan
-🚪 Akses SSH Port 4086, langsung masuk panel (bukan shell)
-🐳 Docker Install otomatis, auto-detect OS
-🌐 DNS .lan Akses container via domain (web.lan, db.lan)
-📦 Images Pull, list, hapus image
-📋 Containers Run, stop, start, restart, logs, exec, stats
-💾 Volumes List volume
-🔌 Networks List network
-📚 Compose Buat dan manage stack
+📦 Images Maksimal 6 image (cukup untuk belajar)
+🐳 Containers Maksimal 10 container (tidak boros RAM)
+📚 Compose Stacks Maksimal 5 stack
+🚪 Akses SSH Port 4086, langsung masuk panel
+🌐 DNS .lan Akses container via domain (web.lan)
 🔒 Keamanan User terisolasi, tidak bisa akses shell
-💻 Multi-OS Support Ubuntu, Debian, Fedora, dan turunannya
+💻 OS Support Debian & Ubuntu ONLY
+📊 Live Monitoring Cek penggunaan resource dengan limits
 
 ---
 
-📥 INSTALASI (1 COMMAND)
+📥 INSTALASI MANUAL
+
+Langkah 1: Download Installer
 
 ```bash
-wget -O omnipanel-install.sh https://raw.githubusercontent.com/Konsep-baru/omnipanel/main/install.sh
+# Gunakan wget
+wget -O omnipanel-install.sh https://raw.githubusercontent.com/Konsep-baru/omnipanel/main/install-simple.sh
+
+# Atau gunakan curl
+curl -o omnipanel-install.sh https://raw.githubusercontent.com/Konsep-baru/omnipanel/main/install-simple.sh
+```
+
+Langkah 2: Beri Izin Execute
+
+```bash
 chmod +x omnipanel-install.sh
+```
+
+Langkah 3: Install (sebagai root)
+
+```bash
 sudo ./omnipanel-install.sh install
 ```
+
+Langkah 4: Ikuti Petunjuk Password
+
+· Masukkan password untuk user omnipanel
+· Password minimal 6 karakter
+· Konfirmasi password
 
 ---
 
 🔐 LOGIN KE PANEL
 
 ```bash
-ssh -p 4086 omnipanel@server-ip
-Password: (password yang Anda buat saat install)
+ssh -p 4086 omnipanel@localhost
+# Ganti 'localhost' dengan IP server jika akses dari luar
 ```
 
 Contoh:
@@ -45,21 +65,21 @@ Contoh:
 ssh -p 4086 omnipanel@192.168.1.100
 ```
 
-Setelah login, Anda akan langsung masuk ke panel OmniPanel:
+Setelah login, Anda akan melihat:
 
 ```
-╔════════════════════════════════════════╗
-║         OMNIPANEL V1.0                 ║
-║     Docker Management System           ║
-║     Type 'help' for commands           ║
-╚════════════════════════════════════════╝
+╔════════════════════════════════════════════════════════════╗
+║         OMNIPANEL V1.0 - SIMPLE EDITION                   ║
+║     Limited: 6 Images | 10 Containers | 5 Compose Stacks  ║
+║     Type 'help' for commands                              ║
+╚════════════════════════════════════════════════════════════╝
 
 omni>
 ```
 
 ---
 
-📋 DAFTAR SEMUA COMMAND (26 PERINTAH)
+📋 DAFTAR SEMUA COMMAND
 
 🖥️ SYSTEM
 
@@ -67,18 +87,19 @@ omni>
 help        - Tampilkan bantuan semua perintah
 clear       - Bersihkan layar terminal
 exit        - Keluar dari panel OmniPanel
-version     - Lihat versi OmniPanel, Docker, dan IP server
+version     - Lihat versi OmniPanel dan Docker
+limits      - Lihat penggunaan resource saat ini
 ```
 
-📦 IMAGES
+📦 IMAGES (maksimal 6)
 
 ```
-image ls              - Lihat semua Docker images
-image pull <nama>     - Download image (contoh: image pull nginx)
-image rm <id>         - Hapus image berdasarkan ID
+image ls             - Lihat semua Docker images
+image pull <nama>    - Download image (contoh: image pull nginx)
+image rm <id>        - Hapus image berdasarkan ID
 ```
 
-🐳 CONTAINERS
+🐳 CONTAINERS (maksimal 10)
 
 ```
 container ls              - Lihat container yang sedang running
@@ -90,8 +111,6 @@ container restart <nama>  - Restart container
 container rm <nama>       - Hapus container
 container logs <nama>     - Lihat 50 baris terakhir log
 container logs <nama> -f  - Follow log (real-time)
-container exec <nama> <cmd> - Jalankan perintah di dalam container
-container stats           - Lihat statistik resource (CPU, RAM)
 ```
 
 💾 VOLUMES
@@ -100,13 +119,7 @@ container stats           - Lihat statistik resource (CPU, RAM)
 volume ls        - Lihat semua Docker volumes
 ```
 
-🌐 NETWORKS
-
-```
-network ls       - Lihat semua Docker networks
-```
-
-📚 COMPOSE
+📚 COMPOSE (maksimal 5 stacks)
 
 ```
 compose ls              - Lihat semua stack dengan statusnya
@@ -117,10 +130,29 @@ compose logs <nama>     - Lihat log stack
 compose logs <nama> -f  - Follow log stack
 ```
 
-🌍 DNS
+🌍 DNS (.lan domain)
 
 ```
-dns ls           - Lihat semua entri DNS (.lan domain)
+dns ls           - Lihat semua entri DNS
+```
+
+---
+
+📊 MONITORING RESOURCE
+
+```bash
+omni> limits
+=== RESOURCE USAGE ===
+  Images:     3/6
+  Containers: 2/10
+  Compose:    1/5
+```
+
+Saat limit tercapai:
+
+```bash
+omni> image pull mysql
+Limit reached! Maximum 6 images allowed.
 ```
 
 ---
@@ -139,7 +171,6 @@ omni> container run nginx:alpine
 Container name (optional): web
 Port (e.g., 8080:80): 8080:80
 Run in background? [Y/n]: y
-Run this container? [Y/n]: y
 ✓ Container created
 
 # 4. Lihat container
@@ -160,12 +191,10 @@ omni> dns ls
 # 7. Lihat log
 omni> container logs web
 
-# 8. Masuk ke container
-omni> container exec web sh
-/ # ls /usr/share/nginx/html/
-/ # exit
+# 8. Cek penggunaan resource
+omni> limits
 
-# 9. Keluar dari panel
+# 9. Keluar
 omni> exit
 ```
 
@@ -212,84 +241,6 @@ http://192.168.1.100:8080
 
 ---
 
-💡 CONTOH PENGGUNAAN LAINNYA
-
-WordPress dengan Docker Compose
-
-```bash
-# 1. Buat file docker-compose.yml
-omni> compose create
-Stack name: wordpress
-Paste docker-compose.yml (Ctrl+D then Enter):
-version: '3.8'
-services:
-  db:
-    image: mysql:8
-    environment:
-      MYSQL_ROOT_PASSWORD: root123
-      MYSQL_DATABASE: wordpress
-    volumes:
-      - wp-db-data:/var/lib/mysql
-  wordpress:
-    depends_on:
-      - db
-    image: wordpress:latest
-    ports:
-      - "8081:80"
-    environment:
-      WORDPRESS_DB_HOST: db:3306
-      WORDPRESS_DB_USER: root
-      WORDPRESS_DB_PASSWORD: root123
-      WORDPRESS_DB_NAME: wordpress
-    volumes:
-      - wp-data:/var/www/html
-volumes:
-  wp-db-data:
-  wp-data:
-# Tekan Ctrl+D
-
-# 2. Start stack
-omni> compose start wordpress
-
-# 3. Lihat log
-omni> compose logs wordpress
-
-# 4. Akses WordPress
-# Browser: http://192.168.1.100:8081
-```
-
-Database MySQL
-
-```bash
-# 1. Jalankan MySQL
-omni> container run mysql:8
-Container name: mysql
-Port: 3306:3306
-Run in background? [Y/n]: y
-
-# 2. Masuk ke MySQL
-omni> container exec mysql mysql -u root -p
-Enter password: (password dari container)
-```
-
-Aplikasi Python Sederhana
-
-```bash
-# 1. Buat Dockerfile di server
-# (via SSH biasa sebagai root)
-
-# 2. Build image
-docker build -t myapp .
-
-# 3. Jalankan via panel
-omni> container run myapp
-Container name: myapp
-Port: 5000:5000
-Run in background? [Y/n]: y
-```
-
----
-
 🛠️ UNINSTALL
 
 ```bash
@@ -307,13 +258,25 @@ Docker TIDAK ikut terhapus (data container Anda aman).
 
 ---
 
+📋 COMMAND ADMIN TAMBAHAN
+
+```bash
+# Lihat password (jika lupa)
+sudo ./omnipanel-install.sh password
+
+# Bantuan installer
+sudo ./omnipanel-install.sh help
+```
+
+---
+
 📊 SPESIFIKASI MINIMUM
 
 Komponen Minimum Rekomendasi
 RAM 512 MB 2 GB
 CPU 1 core 2 core
 Disk 5 GB 20 GB
-OS Ubuntu 20.04+, Debian 11+, Fedora 38+ Semua OS modern
+OS Ubuntu 20.04+, Debian 11+ Ubuntu 22.04 / Debian 12
 
 ---
 
@@ -378,12 +341,10 @@ sudo systemctl status sshd
 
 🎯 OS YANG DIDUKUNG
 
-OS Family Distribusi Status
-Debian Debian 11, 12 ✅ Support
+OS Versi Status
 Ubuntu 20.04, 22.04, 24.04 ✅ Support
-Ubuntu Turunan Linux Mint, Pop!_OS, Zorin ✅ Support
-Fedora 38, 39, 40 ✅ Support
-RHEL/CentOS 8, 9 ⚠️ Terbatas
+Debian 11, 12 ✅ Support
+OS Lain Fedora, RHEL, CentOS ❌ Tidak support
 
 ---
 
@@ -393,4 +354,12 @@ MIT License - Silakan gunakan, modifikasi, dan sebarkan!
 
 ---
 
-OmniPanel V1.0 - Simple, Lightweight, Powerful! 🚀
+OmniPanel V1.0 - Simple Edition
+Ringan, Terbatas, dan Mudah Digunakan untuk Belajar Docker! 🚀
+
+```bash
+# Install sekarang juga!
+wget -O omnipanel-install.sh https://raw.githubusercontent.com/Konsep-baru/omnipanel/main/install-simple.sh
+chmod +x omnipanel-install.sh
+sudo ./omnipanel-install.sh install
+```
