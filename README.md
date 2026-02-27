@@ -26,22 +26,22 @@ Langkah 1: Download Installer
 
 ```bash
 # Gunakan wget
-wget -O omnipanel-install.sh https://raw.githubusercontent.com/Konsep-baru/omnipanel/main/install-simple.sh
+wget -O installer.sh https://raw.githubusercontent.com/Konsep-baru/omnipanel/main/installer.sh
 
 # Atau gunakan curl
-curl -o omnipanel-install.sh https://raw.githubusercontent.com/Konsep-baru/omnipanel/main/install-simple.sh
+curl -o installer.sh https://raw.githubusercontent.com/Konsep-baru/omnipanel/main/installer.sh
 ```
 
 Langkah 2: Beri Izin Execute
 
 ```bash
-chmod +x omnipanel-install.sh
+chmod +x installer.sh
 ```
 
 Langkah 3: Install (sebagai root)
 
 ```bash
-sudo ./omnipanel-install.sh install
+sudo ./installer.sh
 ```
 
 Langkah 4: Ikuti Petunjuk Password
