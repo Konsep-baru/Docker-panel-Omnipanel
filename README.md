@@ -244,7 +244,7 @@ http://192.168.1.100:8080
 🛠️ UNINSTALL
 
 ```bash
-sudo ./omnipanel-install.sh uninstall
+sudo ./installer.sh uninstall
 ```
 
 Akan menghapus:
@@ -262,10 +262,10 @@ Docker TIDAK ikut terhapus (data container Anda aman).
 
 ```bash
 # Lihat password (jika lupa)
-sudo ./omnipanel-install.sh password
+sudo ./installer.sh password
 
 # Bantuan installer
-sudo ./omnipanel-install.sh help
+sudo ./installer.sh help
 ```
 
 ---
@@ -307,7 +307,7 @@ http://192.168.1.100:8080
 Lupa password
 
 ```bash
-sudo ./omnipanel-install.sh password
+sudo ./installer.sh password
 ```
 
 Error SSH "Connection refused"
