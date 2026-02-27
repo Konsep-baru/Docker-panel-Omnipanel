@@ -2,7 +2,7 @@
 
 🚀 OmniPanel - Docker Management System via SSH
 
-Panel Docker super ringan yang diakses melalui SSH. Cocok untuk VPS 512MB, homelab, dan belajar Docker. Installasi otomatis, siap pakai dalam 5 menit!
+Panel Docker super ringan yang diakses melalui SSH. Cocok untuk Server 512MB, homelab, dan belajar Docker. Installasi otomatis, siap pakai dalam 5 menit!
 
 ---
 
