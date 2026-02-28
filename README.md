@@ -26,10 +26,10 @@ Langkah 1: Download Installer
 
 ```bash
 # Gunakan wget
-wget -O installer.sh https://raw.githubusercontent.com/Konsep-baru/Docker-panel Omnipanel/main/installer.sh
+wget -O installer.sh https://raw.githubusercontent.com/Konsep-baru/Docker-panel-Omnipanel/main/installer.sh
 
 # Atau gunakan curl
-curl -o installer.sh https://raw.githubusercontent.com/Konsep-baru/Docker-panel Omnipanel/main/installer.sh
+curl -o installer.sh https://raw.githubusercontent.com/Konsep-baru/Docker-panel-Omnipanel/main/installer.sh
 ```
 
 Langkah 2: Beri Izin Execute
@@ -358,7 +358,7 @@ Ringan, Terbatas, dan Mudah Digunakan untuk Belajar Docker! 🚀
 
 ```bash
 # Install sekarang juga!
-wget -O installer.sh https://raw.githubusercontent.com/Konsep-baru/Docker-panel Omnipanel/main/installer.sh
+wget -O installer.sh https://raw.githubusercontent.com/Konsep-baru/Docker-panel-Omnipanel/main/installer.sh
 chmod +x installer.sh
 sudo ./installer.sh install
 ```
